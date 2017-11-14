@@ -1,0 +1,2 @@
+app._static_folder = os.path.abspath("static/")
+app = Flask(__name__)
