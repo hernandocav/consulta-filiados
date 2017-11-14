@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="downloadForm" action="/filiados/download">
+  
+  <label>Clique para sincronizar a base do TSE</label>
+  <br/>            
+  <button id="botaoDownload" value="Download" action="/download">Download</button>
+  <br/>
+
+  <div id="modalcarga" class="modal">
+      <div id="conteudomodalcarga" class="modal-content">
+          <p>Aguarde a carga finalizar</p>
+      </div>
+  </div>
+  <div id="modalcargaconcluida" class="modal">
+      <div id="divmodalcargaconcluida" class="modal-content" >
+          <span class="close">&times;</span>
+          <p>Aguarde a carga finalizar</p>
+      </div>
+  </div>
+</form>
+       
+<br/>
+<br/>
+
+<form id="consultar" action="/filiados/consultar" method="POST">
+    <label>Nome</label>
+    <input id="nome" name="nome" type="text"></input>
+    <br>
+    <br>
+    <select name="estado"> 
+        <option value="">Selecione o Estado</option> 
+        <option value="ac">Acre</option> 
+        <option value="al">Alagoas</option> 
+        <option value="am">Amazonas</option> 
+        <option value="ap">Amapá</option> 
+        <option value="ba">Bahia</option> 
+        <option value="ce">Ceará</option> 
+        <option value="df">Distrito Federal</option> 
+        <option value="es">Espírito Santo</option> 
+        <option value="go">Goiás</option> 
+        <option value="ma">Maranhão</option> 
+        <option value="mt">Mato Grosso</option> 
+        <option value="ms">Mato Grosso do Sul</option> 
+        <option value="mg">Minas Gerais</option> 
+        <option value="pa">Pará</option> 
+        <option value="pb">Paraíba</option> 
+        <option value="pr">Paraná</option> 
+        <option value="pe">Pernambuco</option> 
+        <option value="pi">Piauí</option> 
+        <option value="rj">Rio de Janeiro</option> 
+        <option value="rn">Rio Grande do Norte</option> 
+        <option value="ro">Rondônia</option> 
+        <option value="rs">Rio Grande do Sul</option> 
+        <option value="rr">Roraima</option> 
+        <option value="sc">Santa Catarina</option> 
+        <option value="se">Sergipe</option> 
+        <option value="sp">São Paulo</option> 
+        <option value="to">Tocantins</option> 
+    </select>
+    <br/>
+    <br/>
+    <input id="consultar" type="submit" value="Procurar" action="/filiados/consultar">
+</form>
+
+
+<table style="width: 100%" border="1">
+  <thead>    
+      <td>Inscrição</td>
+      <td>Nome</td>
+      <td>Partido</td>
+      <td>Estado</td>
+      <td>municipio</td>
+      <td>Situacao</td>
+      <td>Filiação</td>
+      <td>Desfiliação</td>
+      <td>Cancelamento</td>
+      <td>Motivo Cancelamento</td>    
+  </thead>
+  <tbody>
+    
+    {% for filiado in filiados %}
+    <tr>
+      <td>{{ filiado.nr_inscricao }}</td>
+      <td>{{ filiado.nome.decode(encoding='UTF-8') }}</td>
+      <td>{{ filiado.sigla_partido }}</td>
+      <td>{{ filiado.estado.decode(encoding='UTF-8') }}</td>
+      <td>{{ filiado.municipio.decode(encoding='UTF-8') }}</td>
+      <td>{{ filiado.situacao.decode(encoding='UTF-8') }}</td>
+      <td>{{ filiado.dt_filiacao }}</td>
+      <td>{{ filiado.dt_desfiliacao }}</td>
+      <td>{{ filiado.dt_cancelamento }}</td>
+      <td>{{ filiado.motivo_cancelamento.decode(encoding='UTF-8') }}</td>
+    </tr>
+      
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+{% endblock %}
