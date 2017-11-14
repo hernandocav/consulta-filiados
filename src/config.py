@@ -1,5 +1,5 @@
 '''
-    Configuração e parametrização
+    Configuracao e parametrizacao
 '''
 CONST_URL = "http://agencia.tse.jus.br/estatistica/sead/eleitorado/filiados/uf/filiados_"
 CONST_CSV_FOLDER = "/aplic/sead/lista_filiados/uf/"
@@ -12,6 +12,7 @@ ARRAY_PARTIDOS = ["dem", "novo", "pem", "pc_do_b", "pcb", "pco", "pdt", "phs", "
 ARRAY_ERROS = []
 ARRAY_FILIADOS = []
 OPTIONS = {}
+
 
 #SEARCHPATH = ['src/static/pages']
 
