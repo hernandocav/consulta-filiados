@@ -37,8 +37,8 @@ def download():
     """
     Download a lista de filiados da pagina do TSE
     """
-    if not path.exists('./files/'):
-        makedirs('./files/')
+    if not path.exists('./files/filiado/'):
+        makedirs('./files/filiado/')
     for estado in ARRAY_UFS:
         for partido in ARRAY_PARTIDOS:
 
@@ -48,7 +48,7 @@ def download():
 
             response = requests.get(endereco, stream=True)
 
-            caminho = './files/' + estado + '/'
+            caminho = './files/filiado/' + estado + '/'
             arquivo = 'filiados_' + partido + '_' + estado + '.zip'
 
             if not path.exists(caminho):
@@ -88,7 +88,7 @@ def findbynameanduf(nome, estado):
     """
     Procura pelo nome do filiado nos aquivos do TSE
     """
-    caminho = './files/' + estado
+    caminho = './files/filiado/' + estado
     cmd = ('/usr/bin/iconv -f iso-8859-1 -t UTF-8 ' + caminho + CONST_CSV_FOLDER
            + '* | /bin/grep  \"' + nome.upper() + '\"')
 

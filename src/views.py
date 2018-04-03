@@ -27,8 +27,8 @@ def download():
     """
     Download a lista de filiados da pagina do TSE
     """
-    if not path.exists('./files/'):
-        makedirs('./files/')
+    if not path.exists('./files/filiados/'):
+        makedirs('./files/filiados/')
     for estado in ARRAY_UFS:
         for partido in ARRAY_PARTIDOS:
 
@@ -38,7 +38,7 @@ def download():
 
             response = requests.get(endereco, stream=True)            
 
-            caminho = './files/' + estado + '/'
+            caminho = './files/filiados/' + estado + '/'
             arquivo = 'filiados_' + partido + '_' + estado + '.zip'
 
             if not path.exists(caminho):
@@ -57,6 +57,7 @@ def download():
                 ARRAY_ERROS.append('ZIP COM ERRO: ' + caminho + arquivo)
                 print 'ZIP COM ERRO: ' + caminho + arquivo
                 continue
+    return render_template('index.html')
 
 @app.route('/consultar/<estado>/<nome>')
 def consultar(estado, nome):
